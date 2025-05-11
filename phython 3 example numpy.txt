@@ -1,0 +1,45 @@
+
+Python 3 Example with numpy
+
+# Import required libraries
+import numpy as np
+
+array_2d = [[5, 10, 15, 20], [25, 30, 35, 40], [45, 50, 55, 60]]
+
+#convert string to np numpy  using np.array
+nparray = np.array(array_2d)
+
+#details of the array (dimensions, shape, size, and datatype)
+
+print(f"Array details dimensions {nparray.ndim} shape {nparray.shape} size {nparray.size} data types {nparray.dtype}")
+
+#indexing, slicing
+
+print(f"Array second row third column details dimensions {nparray[1,2]}")
+print(f"Slicing entire second row  {nparray[1,:]}") # index starts at zero
+
+print(f"reshape 4 3  {nparray.reshape(4, 3)    }")
+print(f"reshape 2 6  {nparray.reshape(2, 6)    }")
+print(f"reshape 2 6  {nparray.reshape(6, 2)    }")
+
+
+
+#output results when ran in python 3  import 
+numpy as np
+Array details dimensions 2 shape (3, 4) size 12 data types int64
+Array second row third column details dimensions 35
+Slicing entire second row  [25 30 35 40]
+reshape 4 3  [[ 5 10 15]
+ [20 25 30]
+ [35 40 45]
+ [50 55 60]]
+reshape 2 6  [[ 5 10 15 20 25 30]
+ [35 40 45 50 55 60]]
+reshape 2 6  [[ 5 10]
+ [15 20]
+ [25 30]
+ [35 40]
+ [45 50]
+ [55 60]]
+
+
