@@ -1,0 +1,45 @@
+Python using the Titanic data set
+---------------------------------
+head, tail, shape, info, and describe are used to learn more about a pandas DataFrame. 
+
+Panda is the library name
+DataFrame is the class name
+
+DataFrame is a class provided by the pandas library.  It is not a builtin of Python.
+
+import pandas as pd
+
+To use the Python Panda library  you need to add the library,  import and then load the data into the DataFrame.  
+
+The below code works because when you load the dataset  it returns a panda DataFrame even though the panda library was not included.  If you want to use panda functions directly like pd.DataFrame  you will need to import pandas.
+
+import seaborn as sns
+
+titanic_df = sns.load_dataset('titanic')
+
+DataFrame is like table like structure.
+
+
+What is the difference between describe , info and shape.
+
+Shape is the number of rows and columns.
+
+Describe is the descriptive statistics of the data frame.
+
+info is the summary of data frame
+1.) Number of rows and columns
+2.) How many non null values in each column.
+3.) Memory usage
+
+Also, value_count, unique , nunique  to perform data analysis 
+
+Null values in a count are ignored.  This leads to the summing of the values not equaling the total record count.
+
+nunique returns a number of unique values
+unique returns a list of unique values
+
+
+ 
+
+
+
