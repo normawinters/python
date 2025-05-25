@@ -1,0 +1,141 @@
+# groupby
+#use reset_index()
+#flights_data.groupby('month')['passengers'].sum().reset_index()
+
+#reset_index changes the data frame
+#'month' becomes a regular column (not an index)
+#'passengers' becomes a regular column
+#Now you have a clean DataFrame with a default numeric index (0, 1, 2...)
+
+#Easier to work with: You can reference columns normally (df['month'], df['passengers'])
+#Better for further operations: Joining, merging, plotting, etc.
+#Cleaner output: More readable, especially when displaying results
+#Consistent format: Keeps everything as DataFrames rather than mixing Series and DataFrames
+
+
+before the data frame, month is the index, passenger is a column, 
+makes it harder to work with for further analysis
+
+month
+January      150000
+February     120000
+March        180000
+
+reset_index()  resets the dataframe index
+
+  month  passengers
+0  January      150000
+1 February      120000
+2    March      180000
+
+'month' becomes a regular column (not an index)
+'passengers' becomes a regular column
+Now you have a clean DataFrame with a default numeric index (0, 1, 2...)
+
+why use the .reset_index()
+
+Easier to work with: You can reference columns normally (df['month'], df['passengers'])
+Better for further operations: Joining, merging, plotting, etc.
+Cleaner output: More readable, especially when displaying results
+Consistent format: Keeps everything as DataFrames rather than mixing Series and DataFrames
+
+It's essentially "flattening" the grouped result back into a standard tabular format.
+
+
+# Import the necessary libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Load the flights dataset
+flights_data = sns.load_dataset('flights')
+
+# Aggregate passengers' count for each month
+# the group by allows you to use aggregate functions like sum, mean, max
+# group by 
+
+month_wise_data = flights_data.groupby('month')['passengers'].sum().reset_index()
+
+# Create a line plot with customized parameters
+plt.figure(figsize=(14, 8))
+plt.plot(month_wise_data['month'], month_wise_data['passengers'], color='green', alpha=0.7, marker='o', linewidth=2)
+plt.title('Month-wise Total Passengers (1949 - 1960)', fontsize=16)
+plt.xlabel('Month', fontsize=14)
+plt.ylabel('Number of Passengers', fontsize=14)
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
+
+
+#######################################
+
+# Import the required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+flights_data = sns.load_dataset('flights')
+
+
+month_wise_data = flights_data.groupby('month')['passengers'].sum().reset_index()
+
+
+plt.figure(figsize=(10, 6))
+plt.plot(month_wise_data['month'], month_wise_data['passengers'], color='purple', linestyle='dashed', marker='o', markerfacecolor='blue', alpha=0.5)
+plt.title('month-wise Total Passengers (1949 - 1960)', fontsize=14)
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Number of Passengers', fontsize=12)
+plt.grid(True)
+plt.show()
+
+###################################
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+flights_data = sns.load_dataset('flights')
+
+month_wise_data = flights_data.groupby('month')['passengers'].sum().reset_index()
+
+plt.figure(figsize=(10, 6))
+plt.plot(month_wise_data['month'], month_wise_data['passengers'], color='purple', alpha=0.7, marker='o', linewidth=2)
+plt.title('Month-wise Total Passengers (1949 - 1960)', fontsize=14)
+plt.xlabel('Month', fontsize=12)
+plt.ylabel('Number of Passengers', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.6)
+
+plt.show()
+
+#############################
+you can group by more than one column
+flights_data.groupby(['year', 'month'])['passengers'].sum()
+
+
+
+You're absolutely right! That's a much cleaner and more practical way to think about the groupby process:
+1. Group by a column
+pythonflights_data.groupby(['year'])
+
+Organizes the data into groups based on unique values in the 'year' column
+
+2. Select the data you want to aggregate
+pythonflights_data.groupby(['year'])['passengers']
+
+Focuses on just the 'passengers' column within each year group
+This is the data that will be aggregated
+
+3. Apply an aggregation function
+pythonflights_data.groupby(['year'])['passengers'].sum()
+
+Applies .sum() to the passengers data within each year group
+Returns the total passengers per year
+
+This three-step framework works for any groupby operation:
+
+df.groupby('category')['values'].mean()
+df.groupby('region')['sales'].max()
+df.groupby('department')['salary'].count()
+
+This breakdown is much more intuitive than the technical "split-apply-combine" terminology - it directly maps to what you're actually doing in the code!
+
+
