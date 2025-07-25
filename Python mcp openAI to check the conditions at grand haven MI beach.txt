@@ -1,0 +1,27 @@
+# The asyncio is a Python Library for running asynchronous code.
+# The agents module is not a python library, it is OpenAI Agents SDK, installed as part of # OpenAI agentic tools.
+
+import asyncio
+from agents import Agent, WebSearchTool, Runner
+
+
+agent = Agent(
+    name="Research Assistant",
+    instructions="You are a research assistant who can search the web to answer questions.",
+    model="gpt-4.1",
+    tools=[WebSearchTool()]
+)
+
+
+async def main():
+    result = await Runner.run(
+        starting_agent=agent,
+        input= "Current beach conditions in Grand Haven, MI"
+    )
+
+  
+    print(result.final_output)
+
+# the name references the agent name above.
+if __name__ == "__main__":
+    asyncio.run(main())
